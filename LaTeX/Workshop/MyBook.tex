@@ -1,0 +1,55 @@
+\documentclass[a4paper, 11pt]{book} % Définition de la classe du document courant
+%% Packages
+\input{MyPreamble.tex}
+
+\title{Mon premier document avec \LaTeX} % Le premier argument. Il s'agit du titre de mon document.
+\author{Moi même}
+\date{}
+
+\begin{document}
+	
+\selectlanguage{french}
+
+\maketitle
+\thispagestyle{empty}
+
+\frontmatter
+
+% Dédicaces
+% Remerciements
+
+\pagenumbering{Roman}
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+\mainmatter
+
+\chapter*{Introduction générale}
+\addcontentsline{toc}{chapter}{\numberline{}Introduction générale}
+\markboth{Introduction générale}{Introduction générale}
+
+\input{MyChaps/IG.tex}
+
+\chapter{Manipulations générales}
+\input{MyChaps/Chap1.tex}
+
+\chapter{Mon deuxième chapitre}
+\input{MyChaps/Chap2.tex}
+
+
+\chapter*{Conclusion générale}
+\addcontentsline{toc}{chapter}{\numberline{}Conclusion générale}
+\markboth{Conclusion générale}{Conclusion générale}
+\lipsum[1-5]
+
+\backmatter
+
+% Charger les références bibliographiques
+\phantomsection
+\addcontentsline{toc}{chapter}{\numberline{}Bibliographie}
+% \selectlanguage{english}
+\bibliography{Biblio/MyBib}
+
+\end{document} 
