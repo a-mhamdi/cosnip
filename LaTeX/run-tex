@@ -1,0 +1,19 @@
+#!/bin/bash
+
+rubber --clean ${1}
+
+rm *.ist* *.mtc* *.xml *.maf *.ist *.glg *.glo *.gls *.slg *.syg *.syi *-blx.bib*
+
+xelatex --synctex=1 ${1}".tex"
+xelatex --synctex=1 ${1}".tex"
+xelatex --synctex=1 ${1}".tex"
+
+bibtex ${1}
+# makeglossaries ${1}
+
+xelatex --synctex=1 ${1}".tex"
+xelatex --synctex=1 ${1}".tex"
+xelatex --synctex=1 ${1}".tex"
+
+# chmod 700 run-tex
+# ./run-tex
