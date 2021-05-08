@@ -45,7 +45,6 @@ def _get_available_gpus():
 
 tfback._get_available_gpus = _get_available_gpus
 
-
 # %%K.image_data_format() == 'channels_first'
 #K.set_image_dim_ordering('tf')
 K.set_image_data_format('channels_first') # tf: TensorFlow, th: Theano
@@ -99,6 +98,7 @@ my_model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['ac
     #return model
 
 #my_model = CNN_model()
+
 # %% Fit the model
 r = my_model.fit(x=X_train, y=y_train, validation_data=(X_test, y_test), epochs = 5, batch_size=200)
 
@@ -124,24 +124,25 @@ plt.show()
 # %% Evaluate the model
 scores = my_model.evaluate(X_test, y_test, verbose=0)
 print("CNN error: {}%".format(100*(1-scores[1])))
+
 # %% Save the synthesized model
 model_json = my_model.to_json() # Serialize the model to JSON
-with open('Saved_Models/my_model.json', 'w') as json_file:
+with open('exported-mdl/my_model.json', 'w') as json_file:
     json_file.write(model_json)
 # Serialize weights to HDF5
-my_model.save_weights('Saved_Models/my_weights.h5')
+my_model.save_weights('exported-mdl/my_weights.h5')
 print('Model saved to disk')
 # %% Load the model
-json_file = open('Saved_Models/my_model.json', 'r')
+json_file = open('exported-mdl/my_model.json', 'r')
 model_json = json_file.read()
 json_file.close()
 
 my_loaded_model = model_from_json(model_json)
-my_loaded_model.load_weights('Saved_Models/my_weights.h5')
+my_loaded_model.load_weights('exported-mdl/my_weights.h5')
 print('Model loaded from disk')
+
 # %% Test phase
-'''
-img = Image.open('../../Datasets/To_Test/8.png');
+img = Image.open('to-test/7.png');
 img = img.convert('L')
 img = img.resize((28, 28))
 
@@ -154,4 +155,5 @@ plt.show()
 y_pred = my_loaded_model.predict(in_data)
 _, idx = np.where(y_pred == np.max(y_pred))
 print("Result is {}. Probability is {}%.".format(int(idx), 100*y_pred[0, int(idx)]))
-'''
+
+# %%
