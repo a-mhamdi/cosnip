@@ -1,2 +1,2 @@
-This project has been developed for ESPRIT.
+This project had been developed for ESPRIT.
 
