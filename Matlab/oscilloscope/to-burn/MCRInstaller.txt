@@ -1,0 +1,36 @@
+This document describes how to install the MATLAB Common Runtime (MCR). This 
+release of the MCR supports Windows (XP, 2000), and Debian GNU/Linux 3.0.
+All applications developed with the MATLAB Compiler require the MCR to run. The
+MCR must, therefore, be installed on every target machine. 
+
+On windows, the self-extracting file MCRInstaller.exe is used install the MCR 
+(simply follow the on-line instructions). The current installer on UNIX consists 
+of a .ZIP file that contains all the shared libraries and other code that you 
+will need to run applications built with the MATLAB Compiler. You can find the 
+MCR installer files in toolbox/compiler/deploy/win32/MCRInstaller.exe and 
+toolbox/compiler/deploy/glnx86/MCRInstaller.zip.
+
+To install the MCR on UNIX, extract all the files from the ZIP archive into a 
+new directory. (You've probably at least opened the ZIP file, or you wouldn't be 
+reading these directions.) Let's call the installation directory MCR_ROOT. 
+Simply replace <MCR_ROOT> in the following directions with the actual 
+installation path.
+
+Windows:
+
+* The MCR Installer sets up the path automatically.
+
+Linux:
+
+*	setenv LD_LIBRARY_PATH  
+               <MCR_ROOT>/bin/glnx86:
+               <MCR_ROOT>/sys/os/glnx86:
+               <MCR_ROOT>/sys/java/jre/glnx86/jre1.4.2/lib/i386/client:
+               <MCR_ROOT>/sys/java/jre/glnx86/jre1.4.2/lib/i386:
+               <MCR_ROOT>/sys/opengl/lib/glnx86:${LD_LIBRARY_PATH}
+
+*	setenv XAPPLRESDIR <MCR_ROOT>/X11/app-defaults   
+
+
+Copyright 2003-2004 The MathWorks, Inc.
+$Revision $  $Date: 2004/08/17 21:32:57 $
