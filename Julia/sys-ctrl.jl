@@ -1,14 +1,16 @@
+using LaTeXStrings
 using ControlSystems
+using Plots; gr()
+
+tspan = 0:.01:10
 
 s = tf("s")
-sys = s/(s+1)
-t = 2:.5:10
-# PLOT THE STEP RESPONSE
-plot(step(sys,t))
-# PLOT BODE FREQUENCY RESPONSE
-bodeplot(sys)
-# PLOT NYQUIST FREQUENCY RESPONSE
-nyquistplot(sys)
-# PLOT NICHOLS FREQUENCY RESPONSE
-nicholsplot(sys)
+
+plot()
+for τ in [.25, .5, .8, 1, 1.35]
+    sys = 1/(1+τ*s)
+    # PLOT THE STEP RESPONSE
+    plot!(step(sys, tspan), xlabel="t (sec)", label=L"\tau"*"=$τ", legend=:bottomright)
+end
+current()
 
