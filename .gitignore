@@ -40,3 +40,5 @@ Python/ml/datasets/
 *.mp4
 
 
+.wakatime-project
+*.json
