@@ -1,1 +1,0 @@
-![Xilinx](./Xilinx.ico)
