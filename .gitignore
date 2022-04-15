@@ -42,3 +42,4 @@ Python/ml/datasets/
 
 .wakatime-project
 *.json
+*_checkpoints/
