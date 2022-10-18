@@ -11,7 +11,7 @@ using Fuzzy
 using Plots
 
 # ╔═╡ 72985f32-2330-4e34-bd4e-3b21102c400e
-md"# How To Be Selected"
+md"# Lab. \#1: Slection Process - **RAIA**"
 
 # ╔═╡ fff0b462-b686-47e2-bc71-52f2c257a36a
 md"""
@@ -23,48 +23,70 @@ In order to keep things simple, we were given only two criteria to judge:
 2. their score in the interview.
 """
 
-# ╔═╡ af1c8894-c346-4879-87fb-e935674cb4a5
-md"## Builtin Membership Functions"
+# ╔═╡ fae0a9c9-16fa-4ea7-8ca2-a6c1221e12cf
+md"Let's begin by importing the `Fuzzy` module."
+
+# ╔═╡ 30e2096d-eb3d-404f-9c01-9018e224a220
+md"`Plots` is used later to draw the membership functions."
 
 # ╔═╡ 2ec2002a-58c4-4a57-94d4-5cd50b542ddc
 md"""
-**Triangular membership function type**
+## Builtin Membership Functions
 
-    `TriangularMF(l_vertex, center, r_vertex)`
+Using the `Fuzzy.jl` package, there are five types of fuzzifiers:
 
-    `l_vertex`, `center`, and `r_vertex` are the vertices of the triangle, in order.
+### Triangular fuzzifier
 
-**Gaussian membership function type**
+	TriangularMF(l_vertex, center, r_vertex)
 
-    `GaussianMF(center, sigma)`
+`l_vertex`, `center`, and `r_vertex` are the vertices of the triangle, in order.
 
-    - `center` is the center of the distribution;
-    - `sigma` determines the width of the distribution.
+### Gaussian fuzzifier
 
-**Generalised Bell membership function type**
+    GaussianMF(center, sigma)
 
-   `BellMF(a, b, c)`
+- `center` is the center of the distribution;
+- `sigma` determines the width of the distribution.
 
-    `a`, `b`, and `c` are the usual bell parameters with `c` being the center
+### Generalised Bell fuzzifier
 
-**Trapezoidal membership function type**
+	BellMF(a, b, c)
 
-    `TrapezoidalMF(l_bottom_vertex, l_top_vertex, r_top_vertex, r_bottom_vertex)`
+`a`, `b`, and `c` are the usual bell parameters with `c` being the center
 
-    `l_bottom_vertex`, `l_top_vertex`, `r_top_vertex` and `r_bottom_vertex` are the vertices of the trapezoid, in order.
+### Trapezoidal fuzzifier
 
-**Sigmoid membership function type**
+    TrapezoidalMF(l_bottom_vertex, l_top_vertex, r_top_vertex, r_bottom_vertex)
 
-    `SigmoidMF(a, c, limit)`
+`l_bottom_vertex`, `l_top_vertex`, `r_top_vertex` and `r_bottom_vertex` are the vertices of the trapezoid, in order.
 
-    - `a` controls the slope;
-    - `c` is the crossover point;
-    - `limit` sets the extreme limit.
+### Sigmoid fuzzifier
+
+    SigmoidMF(a, c, limit)
+
+- `a` controls the slope;
+- `c` is the crossover point;
+- `limit` sets the extreme limit.
 
 """
 
+# ╔═╡ 518ea297-0f5d-4037-9e15-3cca98cb606e
+md"""
+## Input
+We denote later by `input` all the plausible values of concern in each particular situation. `input` is often referred to as the universe of discourse or universal set $(u)$."""
+
 # ╔═╡ e480dc52-7fac-4600-8049-d37fc0c2cd16
-x = range(0, 10, length = 1000);
+input = range(0, 10, length = 1000);
+
+# ╔═╡ 27168853-8550-452f-ac09-0cc6b1b37b39
+md"""
+## Application
+The first criterion to be used in our case is `application`. This latter represents the score given for a submitted application. We thought of using four membership functions to describe the status of any particular submission:
+1. Weak
+2. Moderate
+3. Good
+4. Strong
+"""
 
 # ╔═╡ b024e18f-11f0-48cf-aa8c-99600de0df18
 application = Dict(
@@ -74,15 +96,24 @@ application = Dict(
 	"Strong" => TrapezoidalMF(7, 9, 10, 10)
 )
 
+# ╔═╡ 821868ae-c4cb-45ab-96d1-098e667aef20
+md"In order to better understand the fuzzyfication process, let's plot the chart describing `application`."
+
 # ╔═╡ 29572dd4-4410-49e2-b22b-567434a19b7d
-data_application = chart_prepare(application, x)
+data_application = chart_prepare(application, input)
 
 # ╔═╡ 15ca8d2d-f819-4637-a344-0f41a6b0ba79
 plot(
-	x, data_application["values"], 
+	input, data_application["values"], 
 	label=data_application["names"], 
 	legend=:bottomleft
 )
+
+# ╔═╡ 2b809361-563f-4673-83c1-5ad654b033cd
+md"""
+## Interview
+The variable `interview` describes the score given to an apllicant after passing the interview test.
+"""
 
 # ╔═╡ 16d2102e-da70-46d3-8fd2-29082371939f
 interview = Dict(
@@ -93,17 +124,25 @@ interview = Dict(
 )
 
 # ╔═╡ 7c390373-95ee-4f6c-92e9-654c17b6afed
-data_interview = chart_prepare(interview, x)
+data_interview = chart_prepare(interview, input)
 
 # ╔═╡ 8808924c-4e39-4e62-b6e8-fb9a1c7a58c0
 plot(
-	x, data_interview["values"], 
+	input, data_interview["values"], 
 	label=data_interview["names"], 
 	legend=:bottomright
 )
 
+# ╔═╡ 9a839a62-2cca-47ab-85f3-9a74da2d1122
+md"It is time now to design the variable `criteria` which aggregates both `application` and `interview`."
+
 # ╔═╡ 5b2c822d-529f-4367-8a24-9f3778088c19
 criteria = [application, interview]
+
+# ╔═╡ c30f8035-32d0-4522-aaaf-7737563f06fb
+md"""
+## Decision
+As for the output, we designate by `decision` the final status of any given application."""
 
 # ╔═╡ aadd76b4-83b9-4cd5-9988-c07ad35174bb
 decision = Dict(
@@ -112,14 +151,19 @@ decision = Dict(
 )
 
 # ╔═╡ b6204d0d-03ab-4fe8-b988-505afe78c128
-data_decision = chart_prepare(decision, x)
+data_decision = chart_prepare(decision, input)
 
 # ╔═╡ 1a120564-e123-4be0-ba3a-c8b6fd160c5f
 plot(
-	x, data_decision["values"], 
+	input, data_decision["values"], 
 	label=data_decision["names"], 
 	legend=:inside
 )
+
+# ╔═╡ a508dedc-d69b-4aa1-983c-213b13c73544
+md"""
+## Set of Rules
+"""
 
 # ╔═╡ f3d87bf2-92bc-4216-b76b-22a0223d33a3
 begin
@@ -161,11 +205,21 @@ rules = [
 	rule_s1, rule_s2, rule_s3, rule_s4
 ]
 
+# ╔═╡ 42b34511-34e3-4915-abb0-e7720a48b4ca
+md"""
+## Fuzzy Inference System
+"""
+
 # ╔═╡ 44ede53c-d2fc-4414-82f3-cd462467a529
 fis = FISMamdani(criteria, decision, rules)
 
+# ╔═╡ bb38ff2c-af23-4e3b-b465-32481afe61e2
+md"""
+Let's make some predictions
+"""
+
 # ╔═╡ bcee90d0-2c8c-4e58-8611-448b9a1ad8e1
-test_in = [5, 4.5]
+test_in = [9., 9.]
 
 # ╔═╡ 87a59e52-29a7-42d5-b291-cb28ec3c77fa
 eval_fis(fis, test_in)
@@ -1080,29 +1134,39 @@ version = "1.4.1+0"
 """
 
 # ╔═╡ Cell order:
-# ╠═72985f32-2330-4e34-bd4e-3b21102c400e
-# ╠═fff0b462-b686-47e2-bc71-52f2c257a36a
+# ╟─72985f32-2330-4e34-bd4e-3b21102c400e
+# ╟─fff0b462-b686-47e2-bc71-52f2c257a36a
+# ╟─fae0a9c9-16fa-4ea7-8ca2-a6c1221e12cf
 # ╠═e7ac2a6a-4da4-11ed-00e5-a959ec2fd76d
+# ╟─30e2096d-eb3d-404f-9c01-9018e224a220
 # ╠═a71fed84-e7c9-4915-9ab9-ee9f11a21683
-# ╟─af1c8894-c346-4879-87fb-e935674cb4a5
 # ╟─2ec2002a-58c4-4a57-94d4-5cd50b542ddc
+# ╟─518ea297-0f5d-4037-9e15-3cca98cb606e
 # ╠═e480dc52-7fac-4600-8049-d37fc0c2cd16
+# ╟─27168853-8550-452f-ac09-0cc6b1b37b39
 # ╠═b024e18f-11f0-48cf-aa8c-99600de0df18
+# ╟─821868ae-c4cb-45ab-96d1-098e667aef20
 # ╠═29572dd4-4410-49e2-b22b-567434a19b7d
 # ╠═15ca8d2d-f819-4637-a344-0f41a6b0ba79
+# ╟─2b809361-563f-4673-83c1-5ad654b033cd
 # ╠═16d2102e-da70-46d3-8fd2-29082371939f
 # ╠═7c390373-95ee-4f6c-92e9-654c17b6afed
 # ╠═8808924c-4e39-4e62-b6e8-fb9a1c7a58c0
-# ╠═5b2c822d-529f-4367-8a24-9f3778088c19
-# ╠═aadd76b4-83b9-4cd5-9988-c07ad35174bb
+# ╟─9a839a62-2cca-47ab-85f3-9a74da2d1122
+# ╟─5b2c822d-529f-4367-8a24-9f3778088c19
+# ╠═c30f8035-32d0-4522-aaaf-7737563f06fb
+# ╟─aadd76b4-83b9-4cd5-9988-c07ad35174bb
 # ╠═b6204d0d-03ab-4fe8-b988-505afe78c128
 # ╠═1a120564-e123-4be0-ba3a-c8b6fd160c5f
+# ╟─a508dedc-d69b-4aa1-983c-213b13c73544
 # ╠═f3d87bf2-92bc-4216-b76b-22a0223d33a3
 # ╠═246ce2e6-cde5-4bcc-b7bd-5cd738b14cf8
 # ╠═61feb173-b353-4abd-a50a-ba36d73ceca0
 # ╠═b0dc32a4-6288-4126-951b-762db7ea6f99
 # ╠═fc8cfdd7-deb5-42ac-a4a8-7a5d321539a5
+# ╟─42b34511-34e3-4915-abb0-e7720a48b4ca
 # ╠═44ede53c-d2fc-4414-82f3-cd462467a529
+# ╟─bb38ff2c-af23-4e3b-b465-32481afe61e2
 # ╠═bcee90d0-2c8c-4e58-8611-448b9a1ad8e1
 # ╠═87a59e52-29a7-42d5-b291-cb28ec3c77fa
 # ╠═82d2ab43-8dc2-4aff-b245-5f7cc9b28d71
