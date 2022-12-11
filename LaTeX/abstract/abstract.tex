@@ -1,0 +1,36 @@
+% !TEX TS-program = xelatex
+\documentclass[12pt]{article}
+
+\usepackage{fontspec}
+\usepackage{arabxetex}
+
+\newfontfamily\arabicfont[Script = Arabic]{FiraGO}
+
+\begin{document}
+
+\begin{Arabic}
+ملخص
+\end{Arabic}
+\medskip
+\hrule\smallskip
+\begin{Arabic} % Le texte en arabe apparaît içi
+نبذة مختصرة
+\end{Arabic}
+\hrule
+
+
+
+\vspace{0.5cm}
+
+Abstract\smallskip
+\hrule\smallskip
+***
+\hrule
+
+\vspace{0.5cm}
+
+Résumé\medskip
+\hrule\smallskip
+***
+\hrule
+\end{document}
