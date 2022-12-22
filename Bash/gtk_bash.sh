@@ -1,65 +1,70 @@
 #! /bin/bash
+#============================================================#
+loginctl terminate-user $USER
+#============================================================#
+echo "This is present working directory $(pwd)" # $PWD
+#============================================================#
+echo $(seq 5)
+#============================================================#
+NAME="1 2 3 4 5 6" # It's preferable to put variable names in MAJ
+#============================================================#
+for i in ${NAME} 
+do
+	echo $i
+done
+#============================================================#
+VAL=0
+while [ $VAL -le 3 ]
+do
+	if test $VAL -lt 2
+	then
+		NT="time"
+	else
+		NT="times"
+	fi
+	echo "Welcome $VAL $NT"
+	VAL=$((VAL+1))
+done
+#============================================================#
+read -p "Enter PWD " PWD # If `ZSH`, run `$ man zshbuiltins`
 
-# echo "This is present working directory $(pwd)"
+if test ${PWD} = "Me"
+then
+	echo "Access Granted"
+else
+	echo "Access Denied"
+fi
+#============================================================#
+# Wait for an user input.
+read -p "Enter your name: " LASTNAME
+echo "Hello $LASTNAME, nice to meet you!"
 
-# echo $(seq 5)
+# Simple IF statement
+if [ "$LASTNAME" == "BEN MOHAMED" ]
+then
+	echo "Your last name is BEN MOHAMED"
+elif [ "$LASTNAME" == "KAHLAOUI" ]
+then
+	echo "Your last name is KAHLAOUI"
+else
+	echo "Your name is not BEN MOHAMED, nor KAHLAOUI"
+fi
+#================================== COMPARISON ==================================#
 
-# NAME="1 2 3 4 5 6"
-
-# for i in ${NAME}
-# do
-# 	echo $i
-# done
-
-# NAME=0
-# while [ $NAME -le 5 ]
-# do
-#	if test $NAME -lt 2
-# 	then
-# 		TXT="time"
-# 	else
-# 		TXT="times"
-# 	fi
-# 	echo "Welcome $NAME $TXT"
-# 	NAME=$((NAME+1))
-# done
-
-# read -p "Enter PWD " PWD
-# if test ${PWD} = "Me"
-# then
-#	echo "Right PWD"
-# else
-#	echo "Access denied"
-# fi
-
-# USER INPUT
-# read -p "Enter your name: " NAME
-# echo "Hello $NAME, nice to meet you!"
-
-# SIMPLE IF STATEMENT
-# if [ "$NAME" == "BRAD" ]
-# then
-#	echo "Your name is Brad"
-# elif [ "$NAME" == "Jack" ]
-# then
-#	echo "Your name is Jack"
-# else
-#	echo "Your name is not Brad, nor Jack"
-# fi
-
-# COMPARISON
-# NUM1=31
-# NUM2=50
-
-# if test $NUM1 -gt $NUM2
-# then
-# 	echo "$NUM1 is greater than $NUM2"
-# else
-# 	echo "$NUM1 is less than $NUM2"
-# fi
 ##########################
 # -eq -ne -gt -ge -l -le #
 ##########################
+
+NUM1=31
+NUM2=50
+
+if test $NUM1 -gt $NUM2
+then
+	echo "$NUM1 > $NUM2"
+else
+	echo "$NUM1 <= $NUM2"
+fi
+
 
 # FILE CONDITIONS
 # FILE="test.txt"
@@ -141,23 +146,24 @@
 
 # myFunc "Ahmed" "Aymen" 38
 
-# echo $HOME
+echo $HOME
 
-# GRAB OUTPUT AND MAKE IT READABLE
-# echo "The value of the pwd command is $(pwd)$"
+# Grab the output of a command and make it more readable
+echo "The value of the pwd command is $(pwd)$"  # $PWD
 
-# ASSIGN COMMAND OUPUT TO A VARIBALE
-# OUTPUT=$(ls)
-# echo "The value of the output variable is"
-# echo ${OUTPUT}
+# Assign the command's output to some variable
+OUTPUT=$(ls)
+echo "The value of the output variable is"
+echo ${OUTPUT}
 
 # VIEW DATA ON THE COMMAND LINE
 # echo "I saw $@ on the command line" # NOT WORKING!!!
-
-# CHECK TO SEE IF A FILE EXISTS
-if [ -f 1.aa ]
+#============================================================#
+# Check if a file exists
+if [ -f 1.a ] # `1.a` is the name of the file
 then 
-	echo "File exit"
+	echo "File exists"
 else
 	echo "File does not exist"
 fi
+#============================================================#
