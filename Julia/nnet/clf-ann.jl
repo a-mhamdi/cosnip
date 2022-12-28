@@ -24,7 +24,7 @@ c = onehotbatch(X[:, 3], gender)
 n, m = size(Xdf)
 X = Array{Any, 2}(undef, (n, m));
 
-for i ∈ 1:m
+for i in 1:m
     X[:, i] = Xdf[!, i];
 end
 
