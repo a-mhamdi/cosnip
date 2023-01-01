@@ -1,7 +1,8 @@
 using CSV, DataFrames
+using MLJ
 
-df = CSV.read("./dataset/Churn_Modelling.csv", DataFrame)
-describe(df) # dropmissing!(df)
+df = CSV.read("./datasets/Churn_Modelling.csv", DataFrame)
+schema(df) # dropmissing!(df)
 
 first(df, 5)
 names(df)
@@ -36,5 +37,24 @@ clf = Chain(
     Dense( 8 => 1, σ)
             )
 
-data = Flux.DataLoader((X', y'), batchsize=16, shuffle=true)
-optim = Flux.setup(Flux.Adam(.01), clf)
+X = permutedims(X)
+y = permutedims(y)
+
+data = Flux.DataLoader((X, y), batchsize=16, shuffle=true)
+optim_state = Flux.setup(Flux.Adam(.01), clf)
+
+
+losses = []
+
+using ProgressMeter
+@showprogress for epoch in 1:1_000
+    for (x, y) in data 
+        loss, grad = Flux.withgradient(clf) do mdl
+            ŷ = mdl(X);
+            Flux.crossentropy(ŷ, y);
+        end
+        Flux.update!(optim_state, clf, grads[1])
+        push!(losses, loss)
+    end
+    sleep(.01)
+end
