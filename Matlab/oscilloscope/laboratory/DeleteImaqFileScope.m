@@ -1,2 +1,0 @@
-global HScopeImage;
-delete(HScopeImage);
