@@ -158,7 +158,7 @@ echo "The value of the output variable is"
 echo ${OUTPUT}
 
 # VIEW DATA ON THE COMMAND LINE
-# echo "I saw $@ on the command line" # NOT WORKING!!!
+echo "I saw $@ on the command line" # NOT WORKING!!!
 #============================================================#
 # Check if a file exists
 if [ -f 1.a ] # `1.a` is the name of the file
