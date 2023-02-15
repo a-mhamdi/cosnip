@@ -141,11 +141,11 @@ do
 done < $MYFILE
 
 # FUNCTION WITH ARGS
-# function myFunc(){
-#	echo "Hello $1 and $2. Are you $3"
-#}
+function Foo(){
+	echo "Hello $1 and $2. Are you $3"
+}
 
-# myFunc "Ahmed" "Aymen" 38
+Foo "Ahmed" "Aymen" 38
 
 echo $HOME
 
