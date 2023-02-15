@@ -125,19 +125,20 @@ fi
 # done
 
 # CREATE FOLDER & WRITE TO A FILE
-# mkdir myTest
-# MYFILE="myTest/text"
-# touch $MYFILE
-# echo "1111111" > $MYFILE
-# echo "2222222" >> $MYFILE
-# echo "3333333" >> $MYFILE
+mkdir myTest
+MYFILE="myTest/text"
+touch $MYFILE
+echo "1111111" > $MYFILE
+echo "2222222" >> $MYFILE
+echo "3333333" >> $MYFILE
+
 # WHILE LOOP - READ THROUGH A FILE LINE BY LINE
-# LINE=1
-# while read -r C_LINE
-# do
-# 	echo "$LINE: $C_LINE"
-#	((LINE++))
-# done < $MYFILE
+LINE=1
+while read -r C_LINE
+do
+	echo "$LINE: $C_LINE"
+	((LINE++))
+done < $MYFILE
 
 # FUNCTION WITH ARGS
 # function myFunc(){
