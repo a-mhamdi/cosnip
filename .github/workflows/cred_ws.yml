@@ -1,6 +1,7 @@
 name: Secrets shared to Python
 
-on: push
+on: 
+   workflow_dispatch
 
 jobs:
    secret_env:
@@ -9,7 +10,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-            python-version: 3.8
+            python-version: '^3.8'
             
       - name: Call Azure ML Studio Web Service
         run: python -c 'import os;print(os.environ)'
