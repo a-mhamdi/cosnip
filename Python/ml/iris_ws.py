@@ -1,10 +1,9 @@
-import json
-import urllib.request as request
 import os
 
-url = os.environ['URL']
-api_key = os.environ['API_KEY']
+url = os.environ['STUDIO_AZURE_ML_URL']
+api_key = os.environ['STUDIO_AZURE_ML_API_KEY']
 
+import json
 
 data = {
 
@@ -25,6 +24,8 @@ body = str.encode(json.dumps(data))
 
 headers = {'Content-Type': 'application/json',
            'Authorization': ('Bearer ' + api_key)}
+
+import urllib.request as request
 
 req = request.Request(url, body, headers)
 
