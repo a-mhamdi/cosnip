@@ -1,4 +1,7 @@
-#! /home/mhamdi/appware/virtenv/venv/bin/python3
+import os
+
+url = os.environ['URL']
+api_key = os.environ['API_KEY']
 
 import urllib.request as request
 
@@ -20,9 +23,6 @@ data =  {
     }
 
 body = str.encode(json.dumps(data))
-
-url = os.environ['URL']
-api_key = os.environ['API_KEY']
 
 headers = {'Content-Type':'application/json', 'Authorization':('Bearer '+ api_key)}
 
