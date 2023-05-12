@@ -1,0 +1,4 @@
+-name: "Call Azure ML Studio Web Service"
+env:
+   URL: ${{ secrets.STUDIO_AZURE_ML_URL }}
+   API_KEY: ${{ secrets.STUDIO_AZURE_ML_API_KEY }}
