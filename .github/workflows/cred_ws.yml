@@ -1,5 +1,18 @@
-name: Call Azure ML Studio Web Service
+name: Secrets shared to Python
+
 on: push
-env:
-   URL: ${{ secrets.STUDIO_AZURE_ML_URL }}
-   API_KEY: ${{ secrets.STUDIO_AZURE_ML_API_KEY }}
+
+jobs:
+   secret_env:
+      runs-on: ubuntu-latest
+      steps:
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+            python-version: 3.8
+            
+      - name: Call Azure ML Studio Web Service
+        run: python -c 'import os;print(os.environ)'
+        env:
+            URL: ${{ secrets.STUDIO_AZURE_ML_URL }}
+            API_KEY: ${{ secrets.STUDIO_AZURE_ML_API_KEY }}
