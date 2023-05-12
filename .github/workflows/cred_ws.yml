@@ -13,7 +13,6 @@ jobs:
             python-version: '^3.8'
             
       - name: Call Azure ML Studio Web Service
-        run: python -c 'import os;print(os.environ)'
         env:
-            URL=${{ secrets.STUDIO_AZURE_ML_URL }}
-            API_KEY=${{ secrets.STUDIO_AZURE_ML_API_KEY }}
+            URL: ${{ secrets.STUDIO_AZURE_ML_URL }}
+            API_KEY: ${{ secrets.STUDIO_AZURE_ML_API_KEY }}
