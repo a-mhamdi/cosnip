@@ -1,3 +1,5 @@
+"R onramp"
+
 # Vectors
 # -------
 
@@ -17,13 +19,11 @@ class(vtr3)
 vtr5 <- c(TRUE, 35L, 3.14)
 vtr6 <- c(TRUE, "Text", -8L, 5.000007)
 
-
 # Matrix
 # ------
 
-mat1 = matrix(c(0.5, 1.2, 3.25, 7.3), 2, 2, TRUE)
-mat2 = matrix(c(0.5, 1.2, 3.25, 7.3), 2, 2, FALSE)
-
+mat1 = matrix(c(0.5, 1.2, 3.25, 7.3), 2, 2, TRUE) # Row then col
+mat2 = matrix(c(0.5, 1.2, 3.25, 7.3), 2, 2, FALSE) # Col then row
 
 # Array
 # -----
@@ -31,24 +31,29 @@ mat2 = matrix(c(0.5, 1.2, 3.25, 7.3), 2, 2, FALSE)
 ary1 = array(c(1, 2, 0.3, 5.5, -5, -7, 8, 8), dim <- c(2, 2, 2))
 ary2 <- array(c(0:15), dim = c(4, 4, 4))
 
-
 # List
 # ----
 
+?list
 lst1 <- list(ary1, vtr2, vtr3)
-
+?unlist
+unlist(lst1)
 
 # Data Frame
 # ----------
+
 vtr1 <- c(1:2)
 vtr2 <- c("a", "b")
 vtr3 <- c(15.2, -5.0004)
 
 x = data.frame(vtr1, vtr2, vtr3)
 
-data.frame(airquality)
+data.frame(airquality) -> df # iris, mtcars
+colnames(df)
+head(df)
+tail(df)
 
-# Operations
+# Math Operations
 # ----------
 
 print(6/6.9)
@@ -60,14 +65,12 @@ print(round(4.5))
 
 var <- 25>=2
 
-
 # Logical Operators
 # -----------------
 
 TRUE & TRUE # AND
 TRUE | FALSE # OR
 !TRUE # Neg
-
 
 # Conditional Statements
 # ----------------------
@@ -80,7 +83,6 @@ if (1>2){
   print("Salem")
 }
 
-
 # Switch Case Statement
 # ---------------------
 
@@ -92,7 +94,6 @@ switch(xyzt,
   '3' = print("3"),
   print("Unknown")
 )
-
 
 # Loops
 # -----
@@ -115,7 +116,6 @@ while (var1 < 20){
   var1 = var1 + 1
 }
 
-
 # For
 
 for (i in c(1:5)){
@@ -136,7 +136,6 @@ nchar(str3)
 toupper(str3)
 tolower(str3)
 substring(str3, 3, 7)
-
 
 # Functions
 # ---------
