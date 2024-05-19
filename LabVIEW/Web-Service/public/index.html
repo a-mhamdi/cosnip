@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Web Service</title>
+</head>
+
+<body>
+
+    <h1>Web Service</h1>
+
+    <form id="myForm" action="/api" method="GET">
+        <input type="float" id="num1" name="num1" placeholder="Enter a number" /><br>
+        <input type="float" id="num2" name="num2" placeholder="Enter another number" /><br><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="result">
+        <p></p>
+    </div>
+
+    <script>
+        const form = document.getElementById('myForm');
+        const resultElement = document.querySelector('#result p');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Retrieve the values from the form
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+
+            // Build the URL with the values
+            const url = `/api/add?num1=${num1}&num2=${num2}`;
+
+            // Make the fetch request to the endpoint
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    // Handle the response from the endpoint
+                    console.log('Response from the endpoint:', data);
+                    // Update the result element with the response data
+                    resultElement.textContent = `Result: ${data.result}`;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+
+</body>
+
+</html>
