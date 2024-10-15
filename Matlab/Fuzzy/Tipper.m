@@ -51,7 +51,7 @@ function Tipper_OpeningFcn(hObject, eventdata, handles, varargin)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 % varargin   command line arguments to Tipper (see VARARGIN)
-fis =readfis('Tipper.fis');
+fis = readfis('Tipper.fis');
 handles.fis = fis;
 
 % Choose default command line output for Tipper

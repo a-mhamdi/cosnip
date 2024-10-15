@@ -11,7 +11,5 @@ def greeting_decorator(func):
 def greet():
     print("Hello, World!")
 
-# Calling the decorator function and greet = greeting_decorator(greet)
-
 # Calling the decorated function
 greet()
