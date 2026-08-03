@@ -9,4 +9,4 @@ The snippets in this repository are **not logically connected** to a single unif
 
 ---
 
-*Feel free to explore, reference, or use any snippets found here if you find them helpful!*
+*💡 Feel free to explore, reference, or use any snippets found here if you find them helpful!*
