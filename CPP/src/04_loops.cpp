@@ -1,3 +1,5 @@
+#include "04_loops.hpp"
+
 #include <iostream>
 
 namespace loops {

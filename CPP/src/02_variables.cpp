@@ -1,3 +1,6 @@
+#include "02_variables.hpp"
+
+#include <iomanip>
 #include <iostream>
 
 namespace variables {
@@ -26,13 +29,20 @@ namespace variables {
         auto gpa = 3.9; // deduced as double
 
         // Display everything
-        std::cout << "Name    : " << name << "\e[4C --> Mem. Usage: " << sizeof name << "\n";
-        std::cout << "Age     : " << age << "\e[6C --> Mem. Usage: " << sizeof age << "\n";
-        std::cout << "Price   : " << price << "\e[4C --> Mem. Usage: " << sizeof price << "\n";
-        std::cout << "Precise : " << precise << "\e[1C --> Mem. Usage: " << sizeof precise << "\n";
-        std::cout << "Letter  : " << letter << "\e[7C --> Mem. Usage: " << sizeof letter << "\n";
-        std::cout << "Fun?    : " << is_cpp_fun << "\e[7C --> Mem. Usage: " << sizeof is_cpp_fun << "\n";
-        std::cout << "PI      : " << PI << "\e[1C --> Mem. Usage: " << sizeof PI << "\n";
-        std::cout << "Score   : " << score << "\e[6C --> Mem. Usage: " << sizeof score << "\n";
+        std::cout << "Name    : " << std::setw(15) << std::left << name << "--> Mem. Usage: " << sizeof name <<
+                " Bytes\n";
+        std::cout << "Age     : " << std::setw(15) << std::left << age << "--> Mem. Usage: " << sizeof age <<
+                " Bytes\n";
+        std::cout << "Price   : " << std::setw(15) << std::left << price << "--> Mem. Usage: " << sizeof price <<
+                " Bytes\n";
+        std::cout << "Precise : " << std::setw(15) << std::left << precise << "--> Mem. Usage: " << sizeof precise <<
+                " Bytes\n";
+        std::cout << "Letter  : " << std::setw(15) << std::left << letter << "--> Mem. Usage: " << sizeof letter <<
+                " Bytes\n";
+        std::cout << "Fun?    : " << std::setw(15) << std::left << is_cpp_fun << "--> Mem. Usage: " << sizeof is_cpp_fun
+                << " Bytes\n";
+        std::cout << "PI      : " << std::setw(15) << std::left << PI << "--> Mem. Usage: " << sizeof PI << " Bytes\n";
+        std::cout << "Score   : " << std::setw(15) << std::left << score << "--> Mem. Usage: " << sizeof score <<
+                " Bytes\n";
     }
 }
