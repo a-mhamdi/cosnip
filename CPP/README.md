@@ -1,6 +1,6 @@
 # C++ Beginner Templates
 
-A collection of clean, well-commented C++ code snippets covering the fundamentals, from `Hello World` to `OOP`. Designed as a teaching resource for beginners.
+A collection of clean, well-commented C++ code snippets covering the fundamentals, from `Hello World` to `OOP`. 
 
 | File                | Topic |
 |---------------------|---|
@@ -11,6 +11,6 @@ A collection of clean, well-commented C++ code snippets covering the fundamental
 | `05_functions.cpp`  | Parameters, return values, overloading, pass by reference, recursion |
 | `06_arrays_vectors.cpp` | Raw arrays, `std::vector`, iterators, `sort`, `find` |
 | `07_pointers.cpp`   | Addresses, dereferencing, dynamic memory, `nullptr` |
-| `08_oop_classes.cpp` | Classes, constructors, destructors, encapsulation, getters/setters |
+| `08_oop_classes.cpp` | Classes, constructors, destructors, encapsulation, getters/setters, `static` members |
 | `09_inheritance.cpp` | Inheritance, `virtual`, polymorphism, abstract classes |
-| `10_interfaces.cpp` | Pure abstract classes, smart pointers, `static` members |
+| `10_interfaces.cpp` | Pure abstract classes, smart pointers |

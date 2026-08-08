@@ -1,5 +1,6 @@
+#include <array>
 #include <iostream>
-#include <vector>
+#include <string_view>
 
 #include "01_hello_world.hpp"
 #include "02_variables.hpp"
@@ -12,29 +13,31 @@
 #include "09_inheritance.hpp"
 #include "10_interfaces.hpp"
 
-int counter = 1;
-std::vector<std::string> topics = {
-    "HELLO WORLD",
-    "VARIABLES",
-    "CONDITIONALS",
-    "LOOPS",
-    "FUNCTIONS",
-    "ARRAYS & VECTORS",
-    "POINTERS",
-    "OOP CLASSES",
-    "INHERITANCE",
-    "INTERFACES"
+constexpr std::array<std::string_view, 10> topics = {
+    {
+        "HELLO WORLD",
+        "VARIABLES",
+        "CONDITIONALS",
+        "LOOPS",
+        "FUNCTIONS",
+        "ARRAYS & VECTORS",
+        "POINTERS",
+        "OOP CLASSES",
+        "INHERITANCE",
+        "INTERFACES"
+    }
 };
 
 void run(void (*demo)()) {
-    std::cout << "DEMO #" << counter++ << " - " << topics[counter - 2] << std::endl;
+    static std::size_t counter = 1;
+    std::cout << "DEMO #" << counter << " - " << topics[counter - 1] << "\n";
+    counter++;
     demo();
-    std::cin.get();
+    std::cin.ignore();
     std::cout << "\033[2J\033[1;1H";
 }
 
 int main() {
-
     run(hello_world::demo);
     run(variables::demo);
     run(conditionals::demo);

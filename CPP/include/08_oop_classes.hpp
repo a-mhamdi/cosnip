@@ -27,7 +27,7 @@ namespace oop_classes {
         // Methods
         void introduce() const;
 
-        void study(const std::string&) const;
+        void study(const std::string &) const;
     };
 
     class Classroom {
@@ -38,11 +38,27 @@ namespace oop_classes {
 
     public:
         explicit Classroom(std::string);
+
         ~Classroom();
 
         void enroll(Student *);
 
         void listStudents() const;
+    };
+
+    class Logger {
+    private:
+        static int instanceCount;
+        std::string tag;
+
+    public:
+        explicit Logger(const std::string &);
+
+        ~Logger();
+
+        void log(const std::string &) const;
+
+        static int getCount();
     };
 
     void demo();
