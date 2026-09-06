@@ -1,7 +1,5 @@
 Here are some `LaTeX` codes.
 
-![LaTeX](./LaTeX.png)
-
 ### Installation
 
 A quick guide on how to install LaTeX distribution depending on the OS your machine is running.

@@ -1,6 +1,5 @@
 
 # Rust Lang
-[![Rust](./Rust.png)](./Rust.png)
 
 [**Rust Book**](https://doc.rust-lang.org/book/)
 
